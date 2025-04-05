@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Welcome</h1>
+    <h1>Welcome to Community Event Management Platform</h1>
 </body>
 
 </html>

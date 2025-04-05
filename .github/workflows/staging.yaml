@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  web-deploy:
+    name: Deploy to staging server
+    runs-on: ubuntu-latest
+    steps:
+      - name: checking out source code
+        uses: actions/checkout@v3
+
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.STG_SSH_KEY }}
+          known_hosts: "Started known host"
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.STG_SERVER }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        run: |
+          rsync -a --exclude-from='./deploy.ignore' ./ ${{ secrets.STG_USERNAME }}@${{ secrets.STG_SERVER }}:${{ secrets.STG_UPLOAD_PATH }}
