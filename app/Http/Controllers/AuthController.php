@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class AuthController extends Controller
+{
+    // Show the login form
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    // Handle the login process
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Attempt to log the user in
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Login successful, redirect to the intended page
+            return redirect()->intended('/')->with('success', 'Logged In');
+        }
+        // Authentication failed, redirect back with an error
+        return redirect()->back()->with('error', 'Invalid Credentials');
+    }
+
+    // Handle the logout process
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login')->with('success', 'Logged Out');
+    }
+}

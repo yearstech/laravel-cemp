@@ -1,0 +1,51 @@
+html, body{
+    font-family: 'Fira Sans', sans-serif;
+}
+.card-shadow {
+    border: none;
+    border-radius: 1.0rem;
+    box-shadow: 5px 5px 5px #d0d0d0, -3px -3px 3px #f8f8f8 !important;
+}
+input[type="checkbox"] {
+    cursor: pointer;
+}
+.wrapper {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.img-circle {
+    border-radius: 50% !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Reduces padding inside the popup */
+.leaflet-popup-content-wrapper {
+    padding: 0px !important;
+    /* Adjust padding to your preference */
+}
+
+/* Optional: Adjusts the overall popup size to fit the content more snugly */
+.leaflet-popup-content {
+    margin: 0px;
+}
+
+/* Add some basic styling for the legend */
+.leaflet-info.leaflet-legend {
+    background-color: white;
+    padding: 10px;
+    line-height: 18px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-info.leaflet-legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
