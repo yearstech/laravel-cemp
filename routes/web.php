@@ -20,7 +20,8 @@ Route::post('/event-types/store', [EventTypeController::class, 'store'])->name('
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(CheckIfLoggedIn::class);;
-
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('sign-up');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 // Dashboard
 Route::get('/', [HomeController::class, 'index'])->name('dashboard')->middleware(CheckIfLoggedIn::class);
 
