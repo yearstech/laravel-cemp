@@ -38,6 +38,30 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('permissions.index') }}" class="nav-link">
+                        <i class="ph-house"></i>
+                        <span>
+                            Permissions
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('roles.index') }}" class="nav-link">
+                        <i class="ph-house"></i>
+                        <span>
+                            Roles
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('user.list') }}" class="nav-link">
+                        <i class="ph-house"></i>
+                        <span>
+                            Users
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('settings.all') }}" class="nav-link">
                         <i class="ph-gear"></i>
                         <span>
