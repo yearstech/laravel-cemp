@@ -39,7 +39,6 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('event-types.index') }}" class="nav-link">
-
                         <i class="ph-gear"></i>
                         <span>
                             Event-types
