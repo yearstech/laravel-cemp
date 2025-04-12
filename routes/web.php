@@ -7,6 +7,16 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckIfLoggedIn;
+use App\Http\Controllers\EventTypeController;
+use App\Models\EventType;
+
+Route::get('/event-types', [EventTypeController::class, 'index'])->name('event-types.index');
+Route::get('/event-types/create', [EventTypeController::class, 'create'])->name('event-types.create');  // Changed to match event-types.create
+Route::post('/event-types/store', [EventTypeController::class, 'store'])->name('event-types.store');  // Changed to match event-types.store
+
+
+
+
 
 // Auth
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

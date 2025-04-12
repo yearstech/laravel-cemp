@@ -38,6 +38,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('event-types.index') }}" class="nav-link">
+
+                        <i class="ph-gear"></i>
+                        <span>
+                            Event-types
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('settings.all') }}" class="nav-link">
                         <i class="ph-gear"></i>
                         <span>
