@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sideNavIndicator();
     prepareMsg();
     initFormOverlay();
+    initializeDataTable('.datatable-basic');
 });
 function initFormOverlay() {
     // initialize form overlay

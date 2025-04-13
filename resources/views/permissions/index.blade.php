@@ -15,7 +15,7 @@
         </form>
     </div>
     <h2>Permission Module Name</h2>
-    <table class="table">
+    <table class="table datatable-basic">
         <thead class="thead">
             <tr>
                 <th>ID</th>
