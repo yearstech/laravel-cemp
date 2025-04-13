@@ -12,6 +12,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EventTypeController;
 
+// Event Types
 Route::get('/event-types', [EventTypeController::class, 'index'])->name('event-types.index');
 Route::get('/event-types/create', [EventTypeController::class, 'create'])->name('event-types.create');  // Changed to match event-types.create
 Route::post('/event-types/store', [EventTypeController::class, 'store'])->name('event-types.store');  // Changed to match event-types.store
@@ -25,6 +26,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(CheckIfLoggedIn::class);;
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('sign-up');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
 // Dashboard
 Route::get('/', [HomeController::class, 'index'])->name('dashboard')->middleware(CheckIfLoggedIn::class);
 
@@ -39,10 +41,12 @@ Route::middleware(CheckIfLoggedIn::class)->group(function () {
 
 // Roles and Permissions
 Route::middleware(CheckIfLoggedIn::class)->group(function () {
-    Route::get('/permissons/index', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::get('/permissons', [PermissionController::class, 'index'])->name('permissions.index');
     Route::get('/permissons/create', [PermissionController::class, 'create'])->name('permissions.create');
     Route::post('/permissons/store', [PermissionController::class, 'store'])->name('permissions.store');
-    Route::get('/permissons/lists', [PermissionController::class, 'index'])->name('permissions.lists');
+    Route::get('/permissons/{permission}', [PermissionController::class, 'edit'])->name('permissions.edit');
+    Route::patch('/permissons/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
+    Route::delete('/permissons/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
 
     Route::get('/roles/index', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
