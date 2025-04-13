@@ -15,6 +15,9 @@ use App\Http\Controllers\EventTypeController;
 Route::get('/event-types', [EventTypeController::class, 'index'])->name('event-types.index');
 Route::get('/event-types/create', [EventTypeController::class, 'create'])->name('event-types.create');  // Changed to match event-types.create
 Route::post('/event-types/store', [EventTypeController::class, 'store'])->name('event-types.store');  // Changed to match event-types.store
+Route::delete('/event-types/{event_type}', [EventTypeController::class, 'destroy'])->name('event-type.destroy');
+Route::get('event-types/{event_type}/edit', [EventTypeController::class, 'edit'])->name('event_types.edit');
+Route::patch('event-types/{event_type}', [EventTypeController::class, 'update'])->name('event-types.update');
 
 // Auth
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

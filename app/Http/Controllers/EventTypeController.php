@@ -37,45 +37,51 @@ class EventTypeController extends Controller
             'name' => 'required|string',
         ]);
 
-        // Retrieve all input data
-        $data = $request->all();
-
-        // Create a new EventType using the data
-        EventType::create($data);
+        // Create a new EventType using the validated data
+        EventType::create($request->all());
 
         // Redirect back to the event-types.index route with a success message
         return redirect()->route('event-types.index')->with('success', 'Added successfully');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(EventType $eventType)
     {
-        //
+        // Pass the single eventType to the edit view
+        return view('event-types.edit', compact('eventType'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, EventType $eventType)
     {
-        //
+        // Validate the incoming data
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        // Update the eventType with the new name
+        $eventType->update([
+            'name' => $request->name,
+        ]);
+
+        // Redirect to event-types.index with success message
+        return redirect()->route('event-types.index')->with('success', 'Event type name updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(EventType $eventType)
     {
-        //
+        // Delete the eventType
+        $eventType->delete();
+
+        // Redirect back to the event-types.index route with success message
+        return redirect()->route('event-types.index')->with('success', 'Event is deleted');
     }
 }
