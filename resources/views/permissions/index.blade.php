@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Permission Lists')
+@section('title', 'Permissions')
 @section('content')
 
 @section('content')
@@ -25,14 +25,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($permissions as $list)
+            @foreach ($permissions as $permission)
                 <tr>
-                    <td>{{ $list->id }}</td>
-                    <td>{{ $list->name }}</td>
-                    <td>{{ $list->updated_at }}</td>
+                    <td>{{ $permission->id }}</td>
+                    <td>{{ $permission->name }}</td>
+                    <td>{{ $permission->updated_at }}</td>
                     <td>
-                        <x-utils.edit-action :route="route('permissions.edit', $list->id)" />
-                        <x-utils.delete-action :id="$list->id" />
+                        <x-utils.edit-action :route="route('permissions.edit', $permission->id)" />
+                        <x-utils.delete-action :id="$permission->id" />
                     </td>
                 </tr>
             @endforeach
