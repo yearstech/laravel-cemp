@@ -3,44 +3,39 @@
 @section('content')
 
 @section('content')
-<div class="row">
-    <div class="col-md-7">
-        {{-- <a class="text-success" href="{{route('permissions.create')}}">Create</a> --}}
-
-        <br>
-        <div class="card">
-            <table class="table datatable-basic">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $count = 1;?>
-                    @foreach ($permissions as $list)
-                        <tr style="border: 1px solid black">
-                            <td>{{$count}}</td>
-                            <td>{{ucfirst($list->name)}}</td>
-                        </tr>
-                    @endforeach
-                
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="col-md-4"> 
-        <h2>Permission Module Name</h2>
-        <form action="{{route('permissions.store')}}" method="POST" >
+    <div class="me-auto w-md-50">
+        <form action="{{ route('permissions.store') }}" method="POST">
             @csrf
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name">
+            <div class="d-flex justify-content-between align-items-center">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Permission Name"
+                    required>
+                <button type="submit" class="ms-2 btn btn-primary">Submit</button>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-</div>
-
+    <h2>Permission Module Name</h2>
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Last Updated</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($permissions as $list)
+                <tr>
+                    <td>{{ $list->id }}</td>
+                    <td>{{ $list->name }}</td>
+                    <td>{{ $list->updated_at }}</td>
+                    <td>
+                        <x-utils.edit-action :route="route('permissions.edit', $list->id)" />
+                        <x-utils.delete-action :id="$list->id" />
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection
