@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title', 'Log In')
+@section('title', 'Sign Up')
 @push('styles_stack')
     <style>
         body {
@@ -21,7 +21,7 @@
                 <h2 class="text-center">
                     Login {!! env('APP_ENV') == 'local' ? ':: <span class="text-danger">Test Environment</span>' : '' !!}
                 </h2>
-                <form action="{{ route('login.post') }}" method="POST">
+                <form action="{{ route('register') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
@@ -44,7 +44,8 @@
                     </div>
                     {{-- Login & Sign-up --}}
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="{{ route('register') }}" class="btn btn-secondary">Sign Up</a>
+                        <button class="btn btn-secondary" type="submit">Sign Up</button>
+                        <a href="{{ route('login') }}" class="text-secondary">Login</a>
                     </div>
                 </form>
             </div>

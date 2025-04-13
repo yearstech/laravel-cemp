@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use App\Models\User;
+
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -18,7 +23,31 @@ class AuthController extends Controller
         return view('auth.register');
     }
     // register process
-    public function register(Request $request) {}
+    public function register(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,',
+            'password' => 'required|string|min:6',
+            'password_confirmation' => 'required|string|min:6|same:password',
+            ]);
+
+        // Update user details
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        $roles =['user'];
+
+        $user->assignRole("User");
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Login successful, redirect to the intended page
+            return redirect()->intended('/')->with('success', 'Logged In');
+        }
+    }
 
     // Handle the login process
     public function login(Request $request)
