@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Spatie\Permission\Models\Permission;
 // use App\Models\Permission;
 
-class PermissionController extends Controller
+class PermissionController extends Controller implements HasMiddleware
 {
+    public static function middleware() : array 
+    {
+        return [
+            new middleware('permission:CRUD_Permission', only : ['index', 'create', 'store', 'edit', 'update', 'destroy']),
+            // new middleware('permission:CRUD_Permission', except : ['index', 'create', 'store'])
+        ];
+    }
+   
     public function index()
     {
         $permissions = Permission::orderBy('created_at', 'desc')->paginate(10);
@@ -29,7 +39,6 @@ class PermissionController extends Controller
             return redirect()->route('permissions.create')->with('error', 'Permission creation failed');
         }
     }
-    public function show($id) {}
     public function edit($id) {}
     public function update(Request $request, $id) {}
     public function destroy($id) {}
