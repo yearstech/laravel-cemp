@@ -27,6 +27,7 @@ class UserController extends Controller implements HasMiddleware
     {
         return [
             // new Middleware('permission:CRUD_User', only : ['edit', 'update', 'profile', 'changePassword']),
+            new Middleware('permission:User List', only : ['list']),
             // new Middleware('permission:CRUD_User', except : ['list'])
         ];
     }
