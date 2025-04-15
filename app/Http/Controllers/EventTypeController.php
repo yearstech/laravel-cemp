@@ -40,8 +40,7 @@ class EventTypeController extends Controller
         // Create a new EventType using the validated data
         EventType::create($request->all());
 
-        // Redirect back to the event-types.index route with a success message
-        return redirect()->route('event-types.index')->with('success', 'Added successfully');
+        return redirect()->route('event-type.index')->with('success', 'Added successfully');
     }
 
     /**
@@ -69,8 +68,7 @@ class EventTypeController extends Controller
             'name' => $request->name,
         ]);
 
-        // Redirect to event-types.index with success message
-        return redirect()->route('event-types.index')->with('success', 'Event type name updated successfully.');
+        return redirect()->route('event-type.index')->with('success', 'Event type name updated successfully.');
     }
 
     /**
@@ -81,7 +79,6 @@ class EventTypeController extends Controller
         // Delete the eventType
         $eventType->delete();
 
-        // Redirect back to the event-types.index route with success message
-        return redirect()->route('event-types.index')->with('success', 'Event is deleted');
+        return redirect()->route('event-type.index')->with('success', 'Event is deleted');
     }
 }

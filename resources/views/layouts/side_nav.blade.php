@@ -39,8 +39,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('event-types.index') }}" class="nav-link">
-                        <i class="ph ph-calendar"></i> Event-types
+                    <a href="{{ route('event-type.index') }}" class="nav-link">
+                        <i class="ph ph-calendar"></i> Event Types
                     </a>
                 </li>
                 @can('CRUD_Permissions')

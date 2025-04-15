@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Permissions')
-@section('content')
 
 @section('content')
     <div class="me-auto w-md-50">
