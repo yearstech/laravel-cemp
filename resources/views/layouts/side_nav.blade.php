@@ -46,6 +46,7 @@
                         </span>
                     </a>
                 </li>
+                @can('CRUD_Permissions')
                 <li class="nav-item">
                     <a href="{{ route('permissions.index') }}" class="nav-link">
                         <i class="ph-house"></i>
@@ -54,6 +55,8 @@
                         </span>
                     </a>
                 </li>
+                @endcan
+                @can('CRUD_Roles')
                 <li class="nav-item">
                     <a href="{{ route('roles.index') }}" class="nav-link">
                         <i class="ph-house"></i>
@@ -62,6 +65,8 @@
                         </span>
                     </a>
                 </li>
+                @endcan
+                @can('CRUD_Users')
                 <li class="nav-item">
                     <a href="{{ route('user.list') }}" class="nav-link">
                         <i class="ph-house"></i>
@@ -70,6 +75,7 @@
                         </span>
                     </a>
                 </li>
+                @endcan
                 <li class="nav-item">
                     <a href="{{ route('settings.all') }}" class="nav-link">
                         <i class="ph-gear"></i>

@@ -5,11 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
+    public static function routes() : array
+    {
+        return [
+            'list' => 'user.list',
+            'edit' => 'user.edit',
+            'update' => 'user.update',
+            'profile' => 'user.profile',
+            'changePassword' => 'user.changePassword',
+        ];
+    }
+    public static function middleware() : array 
+    {
+        return [
+            // new Middleware('permission:CRUD_User', only : ['edit', 'update', 'profile', 'changePassword']),
+            // new Middleware('permission:CRUD_User', except : ['list'])
+        ];
+    }
+
     public function list()
     {
         $users = User::all();
