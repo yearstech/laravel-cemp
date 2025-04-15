@@ -10,14 +10,14 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller implements HasMiddleware
 {
-    public static function middleware() : array 
+    public static function middleware(): array
     {
         return [
-            new middleware('permission:CRUD_Permission', only : ['index', 'create', 'store', 'edit', 'update', 'destroy']),
+            new middleware('permission:CRUD_Permission', only: ['index', 'create', 'store', 'edit', 'update', 'destroy']),
             // new middleware('permission:CRUD_Permission', except : ['index', 'create', 'store'])
         ];
     }
-   
+
     public function index()
     {
         $permissions = Permission::orderBy('created_at', 'desc')->paginate(10);
@@ -41,5 +41,9 @@ class PermissionController extends Controller implements HasMiddleware
     }
     public function edit($id) {}
     public function update(Request $request, $id) {}
-    public function destroy($id) {}
+    public function destroy(Permission $permission)
+    {
+        $permission->delete();
+        return redirect()->route('permissions.index')->with('success', 'Permission deleted successfully');
+    }
 }

@@ -38,4 +38,6 @@
             @endforeach
         </tbody>
     </table>
+    {{-- Delete Modal --}}
+    <x-utils.delete-modal title="Delete Permission" url="{{ route('permissions.destroy', ':id') }}" />
 @endsection
