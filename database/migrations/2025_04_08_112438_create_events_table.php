@@ -24,6 +24,11 @@ return new class extends Migration
             $table->decimal('registration_fee', 8, 2);
             $table->boolean('is_public');
             $table->boolean('is_active');
+            $table->timestamps();
+
+            // Add foreign key constraints
+            $table->foreign('event_type_id')->references('id')->on('event_types')->onDelete('cascade');
+            $table->foreign('host_user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

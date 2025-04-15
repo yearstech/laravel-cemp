@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Permissions')
-@section('content')
 
     <div class="me-auto w-md-50">
         <form action="{{ route('permissions.store') }}" method="POST">
@@ -37,4 +36,6 @@
             @endforeach
         </tbody>
     </table>
+    {{-- Delete Modal --}}
+    <x-utils.delete-modal title="Delete Permission" url="{{ route('permissions.destroy', ':id') }}" />
 @endsection

@@ -13,12 +13,12 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EventTypeController;
 
 // Event Types
-Route::get('/event-types', [EventTypeController::class, 'index'])->name('event-types.index');
-Route::get('/event-types/create', [EventTypeController::class, 'create'])->name('event-types.create');  // Changed to match event-types.create
-Route::post('/event-types/store', [EventTypeController::class, 'store'])->name('event-types.store');  // Changed to match event-types.store
+Route::get('/event-types', [EventTypeController::class, 'index'])->name('event-type.index');
+Route::get('/event-types/create', [EventTypeController::class, 'create'])->name('event-type.create');
+Route::post('/event-types/store', [EventTypeController::class, 'store'])->name('event-type.store');
 Route::delete('/event-types/{event_type}', [EventTypeController::class, 'destroy'])->name('event-type.destroy');
-Route::get('event-types/{event_type}/edit', [EventTypeController::class, 'edit'])->name('event_types.edit');
-Route::patch('event-types/{event_type}', [EventTypeController::class, 'update'])->name('event-types.update');
+Route::get('event-types/{event_type}/edit', [EventTypeController::class, 'edit'])->name('event-type.edit');
+Route::patch('event-types/{event_type}', [EventTypeController::class, 'update'])->name('event-type.update');
 
 // Auth
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
