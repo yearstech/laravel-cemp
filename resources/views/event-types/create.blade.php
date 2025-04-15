@@ -1,19 +1,10 @@
-@extends('layouts.app')  <!-- Extending the base layout -->
-
-@section('content')
 <h1>Create New Event Type</h1>
-
-<!-- Form for creating a new event type -->
-<form method="POST" action="{{ route('event-types.store') }}">
-    @csrf <!-- CSRF token for security -->
-    <!-- Input field for 'name' -->
+<form action="{{ route('event-types.store') }}" method="POST">
+    @csrf
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" class="form-control" required>
+        <input type="text" class="form-control" id="name" name="name">
     </div>
-
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary">Create Event Type</button>
+    <br>
+    <button type="submit" class="btn btn-primary">Create Event</button>
 </form>
-
-@endsection  <!-- End of content section -->

@@ -40,16 +40,13 @@
 
                 <li class="nav-item">
                     <a href="{{ route('event-types.index') }}" class="nav-link">
-                        <i class="ph-gear"></i>
-                        <span>
-                            Event-types
-                        </span>
+                        <i class="ph ph-calendar"></i>  Event-types
                     </a>
                 </li>
                 @can('CRUD_Permissions')
                 <li class="nav-item">
                     <a href="{{ route('permissions.index') }}" class="nav-link">
-                        <i class="ph-house"></i>
+                        <i class="ph ph-lock"></i>
                         <span>
                             Permissions
                         </span>
@@ -59,7 +56,7 @@
                 @can('CRUD_Roles')
                 <li class="nav-item">
                     <a href="{{ route('roles.index') }}" class="nav-link">
-                        <i class="ph-house"></i>
+                        <i class="ph ph-shield-check" title="Admin"></i>
                         <span>
                             Roles
                         </span>
@@ -69,7 +66,7 @@
                 @can('CRUD_Users')
                 <li class="nav-item">
                     <a href="{{ route('user.list') }}" class="nav-link">
-                        <i class="ph-house"></i>
+                        <i class="ph ph-user" title="User"></i>
                         <span>
                             Users
                         </span>
