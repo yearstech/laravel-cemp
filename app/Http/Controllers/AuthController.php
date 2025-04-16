@@ -37,9 +37,11 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        $roles =['user'];
-
-        $user->assignRole("User");
+        if($request->roles){
+            $user->syncRoles($request->roles);
+        } else {
+            $user->assignRole('user');
+        }
 
         $credentials = $request->only('email', 'password');
 

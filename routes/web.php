@@ -32,10 +32,12 @@ Route::get('/', [HomeController::class, 'index'])->name('dashboard')->middleware
 
 // User
 Route::middleware(CheckIfLoggedIn::class)->group(function () {
+    Route::post('/users', [UserController::class, 'store'])->name('user.store');
     Route::get('/users/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::get('/users', [UserController::class, 'list'])->name('user.list');
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::patch('/users/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     Route::post('users/change-password', [UserController::class, 'changePassword'])->name('user.change-password');
 });
 
@@ -51,6 +53,9 @@ Route::middleware(CheckIfLoggedIn::class)->group(function () {
     Route::get('/roles/index', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
     Route::post('/roles/store', [RoleController::class, 'store'])->name('roles.store');
+    Route::get('/roles/{role}', [RoleController::class, 'edit'])->name('roles.edit');
+    Route::patch('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+    Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
 });
 // Settings
 Route::middleware(CheckIfLoggedIn::class)->group(function () {

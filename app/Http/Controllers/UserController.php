@@ -35,8 +35,10 @@ class UserController extends Controller implements HasMiddleware
     public function list()
     {
         $users = User::all();
-        return view('users.list', compact('users'));
+        $roles = Role::all();
+        return view('users.list', compact('users','roles'));
     }
+
     public function edit($id)
     {
         $user = User::find($id);
@@ -48,6 +50,7 @@ class UserController extends Controller implements HasMiddleware
             'hasRoles' => $hasRoles,
         ]);
     }
+
     public function update(Request $request, $id)
     {
         // Validate the input
@@ -102,7 +105,28 @@ class UserController extends Controller implements HasMiddleware
 
         // Redirect with success message
         return back()->with('success', 'Password updated successfully!');
+    }
 
+    public function destroy($id)
+    {
+        // Find the user by ID
+        $user = User::find($id);
+       
+        // Check if the user is the currently authenticated user
+        if ($user->id === Auth::id()) {
+            return redirect()->route('user.list')->with('error', 'You cannot delete your own account.');
+        }
+        // Check if the user has any roles
+        if ($user->roles()->count() > 0) {
+            // Detach all roles from the user
+            $user->syncRoles([]);
+        }
+        // Check if the user has any permissions
         
+        // Delete the user
+        $user->delete();
+        // Redirect with success message
+        
+        return redirect()->route('user.list')->with('success', 'User deleted successfully!');
     }
 }

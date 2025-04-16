@@ -35,11 +35,7 @@ class RoleController extends Controller implements HasMiddleware
         $data['permissions'] = Permission::all();
         return view('roles.lists',compact('data'));
     }
-    public function create()
-    {
-        $permissions = Permission::all();
-        return view('roles.create',compact('permissions'));
-    }
+   
     public function store(Request $request)
     {
        $validatedData = $request->validate([
@@ -54,16 +50,47 @@ class RoleController extends Controller implements HasMiddleware
         return redirect()->route('roles.index')
             ->with('success','Role created successfully');
     }
-    public function show($id)
-    {
-    }
+    
     public function edit($id)
     {
+        $role = Role::findOrFail($id);
+        $permissions = Permission::all();
+        $rolePermissions = $role->permissions->pluck('name')->toArray();
+        return view('roles.edit',compact('role','permissions','rolePermissions'));
     }
+
     public function update(Request $request, $id)
     {
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'name' => 'required|max:20|unique:roles,name,'.$id,
+            'permissions' => 'array',
+        ]);
+        $role = Role::findOrFail($id);
+        if($validatedData){
+
+            $role->name = $validatedData['name'];
+            $role->save();
+    
+            if(!empty($request->permissions)){
+                $role->syncPermissions($request->permissions);
+            }else{
+                $role->syncPermissions([]);
+            }
+            return redirect()->route('roles.index')
+                ->with('success','Role updated successfully');
+        }else{
+            return redirect()->route('roles.edit', ['id' => $id])
+                ->with('error','Role update failed');
+        }
+
     }
-    public function destroy($id)
+    public function destroy(Role $role)
     {
+        $role->syncPermissions([]);
+        $role->delete();
+        return redirect()->route('roles.index')
+            ->with('success','Role deleted successfully');
     }
+    
 }

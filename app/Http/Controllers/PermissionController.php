@@ -39,8 +39,24 @@ class PermissionController extends Controller implements HasMiddleware
             return redirect()->route('permissions.create')->with('error', 'Permission creation failed');
         }
     }
-    public function edit($id) {}
-    public function update(Request $request, $id) {}
+    public function edit($id) {
+
+        $permission = Permission::findOrFail($id);
+        return view('permissions.edit', compact('permission'));
+    }
+    
+    public function update(Request $request, $id) {
+        $validated = $request->validate([
+            'name' => 'required|unique:permissions|max:15',
+        ]);
+        if ($validated) {
+            $permission = Permission::findOrFail($id);
+            $permission->update(['name' => $request->name]);
+            return redirect()->route('permissions.index')->with('success', 'Permission updated successfully');
+        } else {
+            return redirect()->route('permissions.edit', ['id' => $id])->with('error', 'Permission update failed');
+        }
+    }
     public function destroy(Permission $permission)
     {
         $permission->delete();
