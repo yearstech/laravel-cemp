@@ -10,4 +10,8 @@ class EventType extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

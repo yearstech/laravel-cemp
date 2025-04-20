@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('event_type_id');
+            $table->unsignedBigInteger('event_type_id');
             $table->char('details', length: 200);
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
             $table->string('venue');
-            $table->string('banner');
-            $table->string('host_user_id');
+            $table->string('banner')->nullable();
+
+            $table->unsignedBigInteger('host_user_id');
             $table->decimal('registration_fee', 8, 2);
             $table->boolean('is_public');
             $table->boolean('is_active');
