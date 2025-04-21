@@ -39,12 +39,12 @@ Route::middleware(CheckIfLoggedIn::class)->group(function () {
 
 // Roles and Permissions
 Route::middleware(CheckIfLoggedIn::class)->group(function () {
-    Route::get('/permissons', [PermissionController::class, 'index'])->name('permissions.index');
-    Route::get('/permissons/create', [PermissionController::class, 'create'])->name('permissions.create');
-    Route::post('/permissons/store', [PermissionController::class, 'store'])->name('permissions.store');
-    Route::get('/permissons/{permission}', [PermissionController::class, 'edit'])->name('permissions.edit');
-    Route::patch('/permissons/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
-    Route::delete('/permissons/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::get('/permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
+    Route::post('/permissions/store', [PermissionController::class, 'store'])->name('permissions.store');
+    Route::get('/permissions/{permission}', [PermissionController::class, 'edit'])->name('permissions.edit');
+    Route::patch('/permissions/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
+    Route::delete('/permissions/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
 
     Route::get('/roles/index', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
@@ -52,6 +52,7 @@ Route::middleware(CheckIfLoggedIn::class)->group(function () {
     Route::get('/roles/{role}', [RoleController::class, 'edit'])->name('roles.edit');
     Route::patch('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
     Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
     Route::get('/event-types', [EventTypeController::class, 'index'])->name('event-type.index');
     Route::get('/event-types/create', [EventTypeController::class, 'create'])->name('event-type.create');
     Route::post('/event-types/store', [EventTypeController::class, 'store'])->name('event-type.store');

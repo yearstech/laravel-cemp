@@ -30,7 +30,8 @@
                     <td>{{ $event->eventType->name }}</td>
                     <td>{{ $event->start_datetime }}</td>
                     <td>
-                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-info btn-sm">Show</a>
+                        {{-- <a href="{{ route('events.show', $event->id) }}" class="btn btn-info btn-sm"></a> --}}
+                        <x-utils.view-action :id="$event->id" />
                         <x-utils.edit-action :route="route('events.edit', $event->id)" />
                         <x-utils.delete-action :id="$event->id" />
                     </td>
@@ -38,8 +39,23 @@
             @endforeach
         </tbody>
     </table>
-
+    <div id="modal-container">
     </div>
     {{-- Delete Modal --}}
     <x-utils.delete-modal title="Delete Event" url="{{ route('events.destroy', ':id') }}" />
 @endsection
+
+@push('js_after')
+    <script>
+        function showViewModal(eventId) {
+            let route = '{{ route('events.show', ':id') }}'.replace(':id', eventId);
+            fetch(`${route}`)
+                .then(response => response.text())
+                .then(html => {
+                    setModalContent('modal-container', html);
+                    showModal('viewModal');
+                })
+                .catch(error => console.error('Error fetching modal HTML:', error));
+        }
+    </script>
+@endpush
