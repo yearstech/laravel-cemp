@@ -24,6 +24,12 @@ class EventController extends Controller
         // Pass event types to the view
         return view('events.create', compact('eventTypes'));
     }
+    public function show($id)
+    {
+        $event = Event::with('eventType')->findOrFail($id); // This returns an Event model
+        return view('events.show', compact('event'));
+    }
+
 
     function store(Request $request)
     {
