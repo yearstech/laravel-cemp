@@ -14,7 +14,7 @@
                 <li class="list-group-item"><strong>Details:</strong> {{ $event->details }}</li>
                 <li class="list-group-item">
                     <strong>Banner:</strong><br>
-                    {{-- <img src="{{ asset('storage/' . $event->banner) }}" alt="Banner" style="max-width: 300px;"> --}}
+                    <img src="{{ asset('storage/' . $event->banner) }}" alt="Banner" style="max-width: 300px;">
                 </li>
             </ul>
         </div>
