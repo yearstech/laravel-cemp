@@ -24,7 +24,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <select name="event_type_id" ...>
+            <select name="event_type_id" class="form-control">
                 @foreach ($eventTypes as $eventType)
                     <option value="{{ $eventType->id }}">{{ $eventType->name }}</option>
                 @endforeach
