@@ -27,12 +27,8 @@
             </div>
         </div>
 
-        @foreach ($roles as $role)
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{ $role->name }}" name="roles[]">
-                <label class="form-check-label" for="roles">{{ $role->name }}</label>
-            </div>
-        @endforeach
+        <x-utils.form-select label="Select Role" name="roles" :options="$roles->pluck('name', 'id')" multiple />
+
         <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
     <table class="table datatable-basic">
@@ -63,3 +59,11 @@
     </table>
     <x-utils.delete-modal title="Delete Role" url="{{ route('user.destroy', ':id') }}" />
 @endsection
+
+@push('js_after')
+    <script>
+        $(document).ready(function() {
+            $('.multiselect').multiselect();
+        });
+    </script>
+@endpush
