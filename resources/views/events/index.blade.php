@@ -26,7 +26,9 @@
             @foreach ($events as $event)
                 <tr>
                     <td>{{ $event->id }}</td>
-                    <td>{{ $event->title }}</td>
+                    <td>
+                        <x-utils.view-action :id="$event->id" :text="$event->title" />
+                    </td>
                     <td>{{ $event->eventType->name }}</td>
                     <td>{{ $event->start_datetime }}</td>
                     <td>
