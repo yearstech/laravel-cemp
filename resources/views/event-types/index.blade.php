@@ -2,19 +2,11 @@
 @section('title', 'Event Types')
 
 @section('content')
-    <div class="me-auto">
-        <form action="{{ route('event-type.store') }}" method="POST">
-            @csrf
-            <div class="d-flex justify-content-between align-items-center">
-                <input type="text" class="form-control w-75" id="name" name="name" placeholder="Enter Event Name"
-                    required>
-                <button class="wi-100 btn btn-primary">Create Event</button>
-            </div>
-        </form>
+    <div class="text-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create-event-type">Create Event</button>
     </div>
 
     <!-- Define the content section -->
-    <h1>Event Types List</h1>
 
     <table class="table datatable-basic">
         <thead>
@@ -41,4 +33,7 @@
     </table>
     {{-- Delete Modal --}}
     <x-utils.delete-modal title="Delete Type" url="{{ route('event-type.destroy', ':id') }}" />
+
+    {{-- Create Modal --}}
+    @include('event-types.create')
 @endsection
