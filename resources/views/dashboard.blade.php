@@ -20,19 +20,8 @@
 
         <div class="row">
             @foreach ($tiles as $tile)
-                <div class="col-sm-6 col-xl-3">
-                    <a href="{{ $tile['url'] }}" class="text-{{ $tile['color'] }}">
-                        <div class="card card-body">
-                            <div class="d-flex align-items-center">
-                                <i class="ph-{{ $tile['icon'] }} ph-2x text-{{ $tile['color'] }} me-3"></i>
-                                <div class="flex-fill text-end">
-                                    <h4 class="mb-0">{{ $tile['value'] }}</h4>
-                                    <span class="text-muted">{{ $tile['title'] }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <x-utils.dashboard-tile :url="$tile['url']" :title="$tile['title']" :icon="$tile['icon']" :color="$tile['color']"
+                    :value="$tile['value']" />
             @endforeach
         </div>
     </div>

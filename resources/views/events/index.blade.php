@@ -30,7 +30,6 @@
                     <td>{{ $event->eventType->name }}</td>
                     <td>{{ $event->start_datetime }}</td>
                     <td>
-                        {{-- <a href="{{ route('events.show', $event->id) }}" class="btn btn-info btn-sm"></a> --}}
                         <x-utils.view-action :id="$event->id" />
                         <x-utils.edit-action :route="route('events.edit', $event->id)" />
                         <x-utils.delete-action :id="$event->id" />
