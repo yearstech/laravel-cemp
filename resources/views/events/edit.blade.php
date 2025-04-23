@@ -49,7 +49,7 @@
         ]" required
             placeholder="Select Status" />
 
-        <x-utils.form-input name="details" :value="$event->details" label="Event Details" type="textarea" rows="4"
+        <x-utils.form-textarea name="details" :value="$event->details" label="Event Details" type="textarea" rows="4"
             placeholder="Event Details" />
 
         <button type="submit" class="btn btn-success">Update Event</button>

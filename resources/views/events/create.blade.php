@@ -22,14 +22,11 @@
 
         <x-utils.form-input name="start_datetime" label="Start Datetime" required placeholder="Start Datetime" />
 
-
         <x-utils.form-input name="end_datetime" label="End Datetime" required placeholder="End Datetime" />
 
         <x-utils.form-input name="venue" label="Venue" required placeholder="Venue" />
 
-
         <x-utils.form-input name="banner" label="Event Banner" type="file" placeholder="Event Banner" />
-
 
         <x-utils.form-input name="registration_fee" label="Registration Fee" type="number" required
             placeholder="Registration Fee" />
@@ -39,17 +36,17 @@
             0 => 'No',
         ]" placeholder="Select Options" required />
 
-
         <x-utils.form-select name="is_active" label="Is Active" :options="[
             1 => 'Yes',
             0 => 'No',
         ]" required placeholder="Select Status" />
 
+        <x-utils.form-textarea name="details" label="Event Details" placeholder="Event Details" />
 
-        <x-utils.form-input name="details" label="Event Details" type="textarea" rows="4"
-            placeholder="Event Details" />
+        <div class="text-center m-3">
+            <button type="submit" class="btn btn-success" style="display: block;">Create Event</button>
 
+        </div>
 
-        <button type="submit" class="btn btn-success">Create Event</button>
     </form>
 @endsection
